@@ -1,2 +1,2 @@
 # Barbeiros
-#
+#node_modules
