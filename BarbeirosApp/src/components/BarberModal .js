@@ -127,6 +127,20 @@ const DateItemNumber = styled.Text`
       font-weight: bold;
 `;
 
+const TimeList = styled.ScrollView``;
+
+const TimeItrm = styled.TouchableOpacity`
+      width: 75px;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+`;
+
+const TimeItemText = styled.Text`
+      font-size: 16px;
+`;
+
 const months = [
   'Janeiro',
   'Fevereiro',
@@ -191,6 +205,25 @@ export default ({ show, setShow, user, service }) => {
       setSelectedHour(0);
     }
   }, [user, selectedMonth, selectedYear]);
+
+  useEffect(()=>{
+    if(user.available && selectedDay > 0) {
+      let d = new Date(selectedYear, selectedMonth, selectedDay);
+      let year = d.getFullYear();
+      let month = d.getMonth() + 1;
+      let day = d.getDate();
+      month = month < 10 ? '0'+month : month;
+      day = day < 10 ? '0'+day : day;
+      let selDate = `${year}-${month}-${day}`;
+
+      let availability = user.available.filter(e=>e.date === selDate);
+
+      if(availability.length > 0) {
+        setLisHours( availability[0].hours );
+      }
+
+    }
+  }, [user, selectedDay])
 
   useEffect(()=>{
     let today = new Date();
@@ -288,6 +321,29 @@ export default ({ show, setShow, user, service }) => {
               ))}
             </DateList>
           </ModalItem>
+
+          {selectedDay > 0 && listHours.length > 0 &&
+            <ModalItem>
+              <TimeList horizontal={true} showsHorizontalScrollIndicator={false}>
+                {listHours.map((item, key)=>(
+                  <TimeItrm
+                   key={key}
+                   onPress={()=>setSelectedHour(item)}
+                   style={{
+                     backgroundColor: item === selectedHour ? '#4EADBE' : '#FFFFFF'
+                   }}
+                  >
+                    <TimeItemText
+                      style={{
+                        color: item === selectedHour ? '#FFFFFF' : '#000000',
+                        fontWeight: item === selectedHour ? 'bold' : 'normal'
+                      }}
+                    >{item}</TimeItemText>
+                  </TimeItrm>
+                ))}
+              </TimeList>
+            </ModalItem>
+          }
 
           <FinishButton onPress={handleFinishclick}>
             <FinishButtonText>Finalizar Agendamento</FinishButtonText>
