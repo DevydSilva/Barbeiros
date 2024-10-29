@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Meus Documentos\\Documentos\\GitHub\\Barbeiros\\BarbeirosApp\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
+            "outputFile": "C:\\Users\\Devyd Silva\\Documents\\GitHub\\Curso-React_Netive\\Barbeiros\\BarbeirosApp\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Devyd Silva\\.gradle\\caches\\transforms-3\\540dbfb90b248d7b59cd154497c15f99\\transformed\\core-1.5.0\\res\\values-vi\\values-vi.xml",
